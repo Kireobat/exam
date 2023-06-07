@@ -6,6 +6,8 @@
   - [Innholdsfortegnelse](#innholdsfortegnelse)
   - [Oppgave](#oppgave)
     - [Hva betyr det?](#hva-betyr-det)
+  - [Dokumentasjon](#dokumentasjon)
+    - [Drift](#drift)
 
 
 ## Oppgave
@@ -45,5 +47,13 @@ De ønsker at du hjelper dem med følgende:
 - Utvikling
   - Nettside / Applikasjon med login
   - Lage en database og modell
+  - 
 
 
+## Dokumentasjon
+
+### Drift
+
+Domene: skole.intra
+DSRM: Kappa123
+NetBIOS: SKOLE

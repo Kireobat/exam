@@ -7,7 +7,7 @@ export async function GET( {cookies} ) {
 
     const db = new Database('src/lib/data/exam.db', { verbose: console.log })
 
-    const user = db.prepare("SELECT * FROM users WHERE token = ?").get(token)
+    const user = db.prepare("SELECT firstname, lastname, email, username FROM users WHERE token = ?").get(token)
    
     if (!user) {
         return new Response(JSON.stringify({
@@ -17,7 +17,7 @@ export async function GET( {cookies} ) {
     })}
 
     return new Response(JSON.stringify({
-        message: "Login successful"
+        user: user
     }), {
         status: 200,
         headers: {
