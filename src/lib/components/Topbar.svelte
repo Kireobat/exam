@@ -15,7 +15,9 @@
 
   export let admin: boolean = false;
 
-  let initials = user.firstname.charAt(0) + user.lastname.charAt(0);
+  let initials =
+    user.firstname.charAt(0).toUpperCase() +
+    user.lastname.charAt(0).toUpperCase();
 </script>
 
 <div class="flex justify-between bg-slate-100 h-16">
