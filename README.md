@@ -6,7 +6,6 @@
   - [Innholdsfortegnelse](#innholdsfortegnelse)
   - [Oppgave](#oppgave)
     - [Hva betyr det?](#hva-betyr-det)
-    - [Sjekkliste](#sjekkliste)
 
 
 ## Oppgave
@@ -46,7 +45,5 @@ De ønsker at du hjelper dem med følgende:
 - Utvikling
   - Nettside / Applikasjon med login
   - Lage en database og modell
-
-### Sjekkliste
 
 
