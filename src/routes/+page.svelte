@@ -2,4 +2,5 @@
 <p>
   Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
 </p>
-<a href="/login">login</a>
+<a href="/auth/login">login</a>
+<a href="/dashboard">Dashboard</a>
