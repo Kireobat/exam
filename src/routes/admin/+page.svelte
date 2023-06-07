@@ -70,7 +70,7 @@
 
 <main class="h-full overflow-hidden">
   {#if loggedIn}
-    <Topbar {user} />
+    <Topbar {user} admin={true} />
     <div class="grid grid-cols-10 grid-rows-5 h-full">
       <div class="row-span-5 bg-slate-100 w-12">
         <Menu />

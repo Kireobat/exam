@@ -1,0 +1,118 @@
+{
+  "media": [
+    {
+      "classCode": "1",
+      "mediaType": "image",
+      "mediaUrl": "http://www.example.com/image.jpg",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "2",
+      "mediaType": "video",
+      "mediaUrl": "http://www.example.com/video.mp4",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "3",
+      "mediaType": "audio",
+      "mediaUrl": "http://www.example.com/audio.mp3",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "4",
+      "mediaType": "document",
+      "mediaUrl": "http://www.example.com/document.pdf",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "5",
+      "mediaType": "other",
+      "mediaUrl": "http://www.example.com/other",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "6",
+      "mediaType": "image",
+      "mediaUrl": "http://www.example.com/image.jpg",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "7",
+      "mediaType": "video",
+      "mediaUrl": "http://www.example.com/video.mp4",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "8A",
+      "mediaType": "audio",
+      "mediaUrl": "http://www.example.com/audio.mp3",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "8B",
+      "mediaType": "audio",
+      "mediaUrl": "http://www.example.com/audio.mp3",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "8C",
+      "mediaType": "audio",
+      "mediaUrl": "http://www.example.com/audio.mp3",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "8D",
+      "mediaType": "audio",
+      "mediaUrl": "http://www.example.com/audio.mp3",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "9A",
+      "mediaType": "document",
+      "mediaUrl": "http://www.example.com/document.pdf",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "9B",
+      "mediaType": "document",
+      "mediaUrl": "http://www.example.com/document.pdf",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "9C",
+      "mediaType": "document",
+      "mediaUrl": "http://www.example.com/document.pdf",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "9D",
+      "mediaType": "document",
+      "mediaUrl": "http://www.example.com/document.pdf",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "10A",
+      "mediaType": "other",
+      "mediaUrl": "http://www.example.com/other",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "10B",
+      "mediaType": "other",
+      "mediaUrl": "http://www.example.com/other",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "10C",
+      "mediaType": "other",
+      "mediaUrl": "http://www.example.com/other",
+      "description": "This is a description of the image"
+    },
+    {
+      "classCode": "10D",
+      "mediaType": "other",
+      "mediaUrl": "http://www.example.com/other",
+      "description": "This is a description of the image"
+    }
+  ]
+}

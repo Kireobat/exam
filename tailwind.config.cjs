@@ -8,7 +8,11 @@ const config = {
 		require('stwui/plugin')
 	],
   theme: {
-    extend: {},
+    extend: {
+		fontFamily: {
+			'inter': ['Inter', 'sans-serif']
+		},
+	},
   },
   stwui: {
 	themes: ['light', 'dark']
