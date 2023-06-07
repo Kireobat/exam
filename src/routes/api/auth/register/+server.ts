@@ -30,7 +30,9 @@ export async function POST( {request} ) {
 
     console.log(token)
 
-    const username = "e-"+firstname.toLowercase().slice(0,3) + lastname.toLowercase().slice(0,3)
+    let username = "e-"+firstname.slice(0,3) + lastname.slice(0,3);
+
+    username = username.toLowerCase()
 
     console.log(username)
 

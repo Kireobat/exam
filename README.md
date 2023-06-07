@@ -52,6 +52,8 @@ De ønsker at du hjelper dem med følgende:
 
 ## Dokumentasjon
 
+[google sheets](https://docs.google.com/spreadsheets/d/1auid7jO8pZ8DDEQjhIPVLZzPIe0fVUC_fVMD-_4cGKM/edit?usp=sharing)
+
 ### Drift
 
 Domene: skole.intra
