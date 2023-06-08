@@ -82,3 +82,18 @@ Info
   - ++
 - PC-02
   - 10.0.0.5
+
+
+## Sjekkliste
+
+- [ ] Lage en datamodell og DB for brukere som registrerer seg, slik at man kan lagre opplysninger om brukerne. 
+
+- [ ] Lage en nettside eller app for portalen.
+
+- [ ] Lage en beskrivelse av de nødvendige nettverkstjenestene og rollene, og hvordan de kjøres.
+
+- [ ] Lese deg opp på og samle inn nødvendig informasjon om GDPR.
+
+- [ ] Sette opp et budsjett for alt utstyr - både programvare og maskinvare. 
+
+- [ ] Laste ned ISO-filer (W10/11 og W2016/2019/2022 - bare én av hver) og klargjøre maskiner for klient-tjener-nettverk.
