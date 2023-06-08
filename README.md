@@ -54,6 +54,7 @@ De ønsker at du hjelper dem med følgende:
 
 [google sheets](https://docs.google.com/spreadsheets/d/1auid7jO8pZ8DDEQjhIPVLZzPIe0fVUC_fVMD-_4cGKM/edit?usp=sharing)
 
+[forklaringer på nettverkstjenester](https://github.com/Kireobat/Info/blob/main/Drift/Forklaringer/VLAN/readme.md)
 ### Drift
 
 Domene: skole.intra
