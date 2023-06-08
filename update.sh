@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Git pull
-git pull
+# Git fetch
+git fetch
+
+# Git reset
+git reset --hard origin/main
 
 # NPM install
 npm install
