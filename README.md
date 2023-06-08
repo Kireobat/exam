@@ -8,6 +8,7 @@
     - [Hva betyr det?](#hva-betyr-det)
   - [Dokumentasjon](#dokumentasjon)
     - [Drift](#drift)
+  - [Sjekkliste](#sjekkliste)
 
 
 ## Oppgave
@@ -88,12 +89,12 @@ Info
 
 - [ ] Lage en datamodell og DB for brukere som registrerer seg, slik at man kan lagre opplysninger om brukerne. 
 
-- [ ] Lage en nettside eller app for portalen.
+- [x] Lage en nettside eller app for portalen.
 
-- [ ] Lage en beskrivelse av de nødvendige nettverkstjenestene og rollene, og hvordan de kjøres.
+- [x] Lage en beskrivelse av de nødvendige nettverkstjenestene og rollene, og hvordan de kjøres.
 
 - [ ] Lese deg opp på og samle inn nødvendig informasjon om GDPR.
 
-- [ ] Sette opp et budsjett for alt utstyr - både programvare og maskinvare. 
+- [x] Sette opp et budsjett for alt utstyr - både programvare og maskinvare. 
 
-- [ ] Laste ned ISO-filer (W10/11 og W2016/2019/2022 - bare én av hver) og klargjøre maskiner for klient-tjener-nettverk.
+- [x] Laste ned ISO-filer (W10/11 og W2016/2019/2022 - bare én av hver) og klargjøre maskiner for klient-tjener-nettverk.
