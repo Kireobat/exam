@@ -19,7 +19,7 @@ export async function POST( {request} ) {
         status: 400
     })}
 
-    const user = db.prepare('SELECT * FROM users WHERE username = ?').get(username)
+    const user = db.prepare('SELECT * FROM Users WHERE username = ?').get(username)
 
     if (!user) {
         return new Response(JSON.stringify({
