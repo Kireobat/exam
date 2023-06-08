@@ -11,11 +11,13 @@
     lastname: string;
     email: string;
     username: string;
+    role_id: any;
   } = {
     firstname: "",
     lastname: "",
     email: "",
     username: "",
+    role_id: null,
   };
 
   // variables
@@ -73,7 +75,7 @@
     <Topbar {user} />
     <div class="grid grid-cols-10 grid-rows-5 h-full">
       <div class="row-span-5 bg-slate-100 w-12">
-        <Menu />
+        <Menu {user} />
       </div>
       <div class="col-span-9 row-span-5 mt-4 mb-16 overflow-y-scroll">
         {#if fragment === "#item1"}

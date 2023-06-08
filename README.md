@@ -59,3 +59,25 @@ De ønsker at du hjelper dem med følgende:
 Domene: skole.intra
 DSRM: Kappa123
 NetBIOS: SKOLE
+
+Hjemme mapper blir autogenerert når en konto blir opprettet
+
+Hjemme mappen er tilgjengelig ved Z:
+
+Info
+
+- PFSense
+  - 10.0.0.1
+  - DHCP
+    - 10.0.0.11-10.0.0.250
+    - 255.255.255.0
+- SRV-005
+  - 10.0.0.10
+  - DNS
+  - AD
+    - skole.intra
+  - IIS
+    - http://skole.intra
+  - ++
+- PC-02
+  - 10.0.0.5

@@ -1,3 +1,4 @@
+//@ts-expect-error
 import Database from 'better-sqlite3';
 
 export async function GET( {cookies} ) {
@@ -7,7 +8,9 @@ export async function GET( {cookies} ) {
 
     const db = new Database('src/lib/data/exam.db', { verbose: console.log })
 
-    const user = db.prepare("SELECT firstname, lastname, email, username FROM users WHERE token = ?").get(token)
+    const user = db.prepare("SELECT firstname, lastname, email, username, role_id FROM users WHERE token = ?").get(token)
+
+    console.log(user)
    
     if (!user) {
         return new Response(JSON.stringify({

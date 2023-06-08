@@ -1,5 +1,8 @@
+//@ts-expect-error
 import Database from 'better-sqlite3'
+//@ts-expect-error
 import bcrypt from 'bcrypt'
+//@ts-expect-error
 import { v4 as uuidv4 } from 'uuid'
 
 export async function POST( {request} ) {
@@ -8,21 +11,19 @@ export async function POST( {request} ) {
     console.log("firstname: ", firstname, "lastname: ", lastname, "password: ", password)
 
     if (!firstname || !lastname || !password || !confirmPassword) {
-        return {
-            status: 400,
-            body: {
-                error: "Please fill in all fields"
-            }
-        }
+        return new Response(JSON.stringify({
+            message: "Please fill in all fields"
+    }), {
+        status: 400
+    })
     }
     
     if (password !== confirmPassword) {
-        return {
-            status: 400,
-            body: {
-                error: "Passwords do not match"
-            }
-        }
+        return new Response(JSON.stringify({
+            message: "Passwords do not match"
+    }), {
+        status: 400
+    })
     }
 
     // generate other values

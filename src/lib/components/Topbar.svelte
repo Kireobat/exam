@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Avatar, Portal, Modal, Input, Button } from "stwui";
-  import { onMount } from "svelte";
+  import { Avatar, Portal, Modal, Input, Button, Alert } from "stwui";
   export let admin: boolean = false;
 
   export let user: {
@@ -31,6 +30,49 @@
   function toggleLoading() {
     loading = !loading;
   }
+
+  let deleting = false;
+
+  $: if (open === false) deleting = false;
+
+  const confirm =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>';
+  const cancel =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>';
+  const alertIcon =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>';
+
+  async function deleteAccount() {
+    // make a post request to /api/deleteUser
+    // if successful, show alert
+    // if not, show error
+
+    await fetch("/api/deleteUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ username: user.username }),
+    })
+      .then((res) => {
+        console.log(res);
+        let data: any = res.json();
+        if (res.status === 200) {
+          alert("account deleted");
+          setTimeout(() => {
+            // window.location.href = "/logout";
+          }, 2000);
+        } else {
+          alert(
+            "An error has occured. Please try again. Status: " + res.status
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 </script>
 
 <div class="flex justify-between bg-slate-100 h-16">
@@ -57,28 +99,62 @@
           ><h2 class="font-inter">Settings</h2></Modal.Content.Header
         >
         <Modal.Content.Body slot="body">
-          <h3>Change name</h3>
-          <Input name="input" placeholder="Firstname" />
-          <Input name="input" placeholder="Lastname" />
-          <h3>Change email</h3>
-          <Input name="input" placeholder="Email" />
-          <h3>Change password</h3>
-          <Input
-            type="password"
-            name="input"
-            placeholder="Password"
-            showPasswordToggle
-          />
-          <Input
-            type="password"
-            name="input"
-            placeholder="Confirm password"
-            showPasswordToggle
-          />
+          <div>
+            <h3>Change name</h3>
+            <Input name="input" placeholder="Firstname" />
+            <Input name="input" placeholder="Lastname" />
+            <h3>Change password</h3>
+            <Input
+              type="password"
+              name="input"
+              placeholder="Password"
+              showPasswordToggle
+            />
+            <Input
+              type="password"
+              name="input"
+              placeholder="Confirm password"
+              showPasswordToggle
+            />
 
-          <Button type="primary" {loading} on:click={toggleLoading} class="mt-8"
-            >Save</Button
-          >
+            <Button
+              type="primary"
+              {loading}
+              on:click={toggleLoading}
+              class="mt-8">Save</Button
+            >
+          </div>
+          <hr class="my-4 border-gray-300" />
+          <div>
+            <h3>Delete your account</h3>
+
+            <Button
+              type="danger"
+              class="my-4"
+              on:click={() => (deleting = !deleting)}>Delete account</Button
+            >
+
+            {#if deleting}
+              <Alert type="warn" class="w-full mx-1 my-4">
+                <Alert.Leading slot="leading" data={alertIcon} />
+                <Alert.Title slot="title"
+                  >Are you sure you want to delete your account?</Alert.Title
+                >
+                <Alert.Description slot="description"
+                  >This action can not be undone</Alert.Description
+                >
+              </Alert>
+
+              <Button type="danger" class="h-10 w-28" on:click={deleteAccount}>
+                Confirm
+                <Button.Trailing slot="trailing" data={confirm} />
+              </Button>
+              <Button type="primary" class="h-10 w-28">
+                Cancel
+                <Button.Trailing slot="trailing" data={cancel} />
+              </Button>
+            {/if}
+          </div>
         </Modal.Content.Body>
         <Modal.Content.Footer slot="footer">Footer</Modal.Content.Footer>
       </Modal.Content>

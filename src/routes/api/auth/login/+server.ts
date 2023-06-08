@@ -1,5 +1,8 @@
+//@ts-expect-error
 import Database from 'better-sqlite3'
+//@ts-expect-error
 import bcrypt from 'bcrypt'
+//@ts-expect-error
 import { v4 as uuidv4 } from 'uuid'
 
 const db = new Database('src/lib/data/exam.db')
