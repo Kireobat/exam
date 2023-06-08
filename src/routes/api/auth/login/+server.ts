@@ -40,7 +40,7 @@ export async function POST( {request} ) {
     // Password is correct, proceed with login
     const token = uuidv4()
 
-    db.prepare('UPDATE users SET token = ? WHERE id = ?').run(token, user.id)
+    db.prepare('UPDATE Users SET token = ? WHERE id = ?').run(token, user.id)
 
     return new Response(JSON.stringify({
         message: "Login successful"
