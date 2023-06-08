@@ -88,7 +88,7 @@
   >
   <div class="absolute top-0 right-0 bottom-0 left-0 m-auto h-96 w-full">
     <div class="flex justify-center">
-      <div class="w-96 flex flex-col mx-6">
+      <div class="w-96 flex flex-col mx-6 z-10">
         <div class="flex gap-2">
           <div class="flex flex-col justify-center">
             <a href="/">
