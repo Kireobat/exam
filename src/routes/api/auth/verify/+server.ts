@@ -8,7 +8,7 @@ export async function GET( {cookies} ) {
 
     const db = new Database('src/lib/data/exam.db', { verbose: console.log })
 
-    const user = db.prepare("SELECT firstname, lastname, email, username, role_id FROM users WHERE token = ?").get(token)
+    const user = db.prepare("SELECT firstname, lastname, email, username, role_id FROM Users WHERE token = ?").get(token)
 
     console.log(user)
    
