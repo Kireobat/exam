@@ -31,6 +31,7 @@
   };
 
   onMount(() => {
+    // Fragment things
     if (typeof window !== "undefined") {
       updateFragment();
       window.addEventListener("hashchange", updateFragment);
@@ -59,6 +60,14 @@
       .catch((error) => {
         // handle network error
       });
+    // Activity
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("mousemove", updateActivity);
+    } else {
+      console.log("window is undefined");
+    }
+    setInterval(checkActivity, 60000);
   });
 
   onDestroy(() => {
@@ -67,7 +76,54 @@
     } else {
       console.log("window is undefined");
     }
+
+    // Activity
+
+    if (typeof window !== "undefined") {
+      window.removeEventListener("mousemove", updateActivity);
+    } else {
+      console.log("window is undefined");
+    }
   });
+
+  // Activity
+
+  let lastActivityTime = Date.now();
+
+  function checkActivity() {
+    const currentTime = Date.now();
+    const diff = currentTime - lastActivityTime;
+    console.log("diff: ", diff);
+    console.log("lastActivityTime: ", lastActivityTime);
+    console.log("currentTime: ", currentTime);
+    if (diff > 20 * 60 * 1000) {
+      fetch("/api/auth/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      })
+        .then((res) => {
+          console.log(res);
+          let data: any = res.json();
+          if (res.status === 200) {
+            window.location.href = "/inactive";
+          } else {
+            alert(
+              "An error has occured. Please try again. Status: " + res.status
+            );
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  function updateActivity() {
+    lastActivityTime = Date.now();
+  }
 </script>
 
 <main class="h-full overflow-hidden">

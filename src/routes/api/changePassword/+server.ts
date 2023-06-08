@@ -1,16 +1,18 @@
 //@ts-expect-error
 import Database from 'better-sqlite3'
+//@ts-expect-error
+import bcrypt from 'bcrypt'
 
 const db = new Database('src/lib/data/exam.db')
 //@ts-expect-error
 export async function POST( {request, cookies} ) {
 
     //get data
-    const { username } = await request.json()
+    const { username, password, confirmPassword} = await request.json()
 
     const token: string | undefined = cookies.get("token")
 
-    console.log("user to delete: ", username, "requester token: ", token)
+    console.log("user to change password on: ", username, "requested password: ", password , "requester token: ", token)
 
     // check if data is present
 
@@ -21,37 +23,43 @@ export async function POST( {request, cookies} ) {
         status: 401
     })}
 
-    if (!username) {
+    if (!username || !password || !confirmPassword) {
         return new Response(JSON.stringify({
             message: "Please fill in all fields"
     }), {
         status: 400
     })}
 
+    if (password !== confirmPassword) {
+        return new Response(JSON.stringify({
+            message: "Passwords don't match"
+    }), {
+        status: 400
+    })}
+
+
     // check if user has the correct role
 
-    const userToDelete = db.prepare('SELECT token, id FROM users WHERE username = ?').get(username)
+    const userToChange = db.prepare('SELECT token, id FROM users WHERE username = ?').get(username)
     const user = db.prepare('SELECT role_id FROM users WHERE token = ?').get(token)
 
 
-    if (user.role_id !== 1 && userToDelete.token !== token) {
+    if (user.role_id !== 1 && userToChange.token !== token) {
         return new Response(JSON.stringify({
             message: "You don't have the correct role to perform this action"
     }), {
         status: 401
     })}
 
-    // delete the requested user
+    // change the requested user's password
 
-    db.prepare('DELETE FROM users WHERE username = ?').run(username)
+    const hashedPassword = await bcrypt.hash(password, 10)
 
-    // delete from Classes_Users
-
-    db.prepare('DELETE FROM Classes_Users WHERE user_id = ?').run(userToDelete.id)
+    db.prepare('UPDATE users SET password = ? WHERE username = ?').run(hashedPassword, username)
 
 
     return new Response(JSON.stringify({
-        message: "User deleted"
+        message: "Password changed"
     }), {
         status: 200,
         headers: {

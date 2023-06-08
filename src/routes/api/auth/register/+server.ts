@@ -35,6 +35,17 @@ export async function POST( {request} ) {
 
     username = username.toLowerCase()
 
+    // check if username is already taken and if so, add a number to the end incrementally until it is not taken
+
+    let i = 1
+
+    const db = new Database('src/lib/data/exam.db', { verbose: console.log })
+
+    while (db.prepare('SELECT username FROM Users WHERE username = ?').get(username)) {
+        username = username + i
+        i++
+    }    
+
     console.log(username)
 
     const email = username + "@example.com"
@@ -44,10 +55,6 @@ export async function POST( {request} ) {
     // hash the password 
 
     const hashedPassword = await bcrypt.hash(password, 10)
-
-    // open db connection
-
-    const db = new Database('src/lib/data/exam.db', { verbose: console.log })
 
     const stmt = db.prepare('INSERT INTO Users (firstname, lastname, password, email, username, token) VALUES (?, ?, ?, ?, ?, ?)')
 

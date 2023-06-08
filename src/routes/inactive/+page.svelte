@@ -1,66 +1,10 @@
-<script lang="ts">
-  import { Input, Button, Alert } from "stwui";
-  import Leading from "stwui/components/feed/Leading.svelte";
+<script>
+  import { Button } from "stwui";
 
-  let loading = false;
-
-  function toggleLoading() {
-    loading = !loading;
-  }
-
-  let user =
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>';
-  let key =
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z"/></svg>';
-
-  let username = "";
-  let password = "";
-  let alert: {
-    type: "success" | "error" | "warn" | "info";
-    description: string;
-    title: string;
-  } = {
-    type: "error",
-    description: "",
-    title: "",
-  };
-
-  $: {
-    console.log(username);
-    console.log(password);
-  }
-
-  async function login() {
-    if (!username || !password) {
-      alert.title = "Please fill in all fields";
-      alert.description = "You need to fill in username and password to login";
-      return;
-    }
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    });
-
-    if (res.status == 200) {
-      return setTimeout(() => {
-        toggleLoading();
-        window.location.href = "/dashboard#item1";
-      }, 1000);
-    } else {
-      return setTimeout(() => {
-        toggleLoading();
-        alert.type = "error";
-        alert.title = "Error";
-        alert.description = "Something went wrong";
-      }, 1000);
-    }
-  }
+  const homeIcon =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>';
+  const loginIcon =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>';
 </script>
 
 <div class="relative h-full w-full overflow-hidden">
@@ -84,71 +28,31 @@
       fill="#f1f5f9"
     /></svg
   >
-  <div class="absolute top-0 right-0 bottom-0 left-0 m-auto h-96 w-full">
+  <div class="absolute top-0 right-0 bottom-0 left-0 m-auto h-60 w-full">
     <div class="flex justify-center">
-      <div class="w-96 flex flex-col mx-6 z-10">
-        <div class="flex gap-2">
-          <div class="flex flex-col justify-center">
-            <a href="/">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="1.5em"
-                viewBox="0 0 448 512"
-                ><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path
-                  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
-                /></svg
-              >
-            </a>
-          </div>
-          <h2 class="font-inter">|</h2>
-          <h2 class="font-inter">Login</h2>
+      <div class="flex flex-col">
+        <h1 class="font-inter font-thin text-5xl">
+          You have been inactive for 20 minutes
+        </h1>
+        <div class="flex justify-center mt-4">
+          <h2 class="font-inter font-thin text-2xl text-slate-400">
+            Remember to log out before leaving your computer
+          </h2>
         </div>
-        <div class="my-4">
-          <Input name="input" bind:value={username} class="font-inter">
-            <Input.Leading slot="leading" data={user} />
-            <Input.Label slot="label" class="font-inter">Username</Input.Label>
-          </Input>
-          <Input
-            type="password"
-            name="input"
-            class="font-inter"
-            showPasswordToggle
-            bind:value={password}
-          >
-            <Input.Leading slot="leading" data={key} />
-            <Input.Label slot="label" class="font-inter">Password</Input.Label>
-          </Input>
+        <div class="mt-12 flex justify-center">
+          <a href="/dashboard">
+            <Button type="primary">
+              <Button.Leading data={homeIcon} slot="leading" />
+              Dashboard
+            </Button>
+          </a>
+          <a href="/auth/login">
+            <Button type="ghost">
+              <Button.Leading data={loginIcon} slot="leading" />
+              Login / Register
+            </Button>
+          </a>
         </div>
-        <div class="mb-4">
-          <Button
-            type="primary"
-            class="font-inter"
-            {loading}
-            on:click={() => {
-              toggleLoading();
-              setTimeout(() => {
-                toggleLoading();
-                login();
-              }, 2000);
-            }}>Login</Button
-          >
-          <Button
-            type="ghost"
-            class="font-inter"
-            on:click={() => (window.location.href = "/auth/register")}
-            >Don't have an account? Register</Button
-          >
-        </div>
-        {#if alert.description}
-          <Alert type={alert.type} class="w-full">
-            <Alert.Title slot="title" class="font-inter"
-              >{alert.title}</Alert.Title
-            >
-            <Alert.Description slot="description" class="font-inter"
-              >{alert.description}</Alert.Description
-            >
-          </Alert>
-        {/if}
       </div>
     </div>
   </div>
@@ -172,4 +76,13 @@
       fill="#f1f5f9"
     /></svg
   >
+  <div class="absolute bottom-0 right-0 z-1 mb-4 mr-4">
+    <a href="https://github.com/Kireobat/exam" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 496 512"
+        ><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path
+          d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+        /></svg
+      >
+    </a>
+  </div>
 </div>

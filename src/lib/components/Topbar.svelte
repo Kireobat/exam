@@ -73,6 +73,98 @@
         console.log(err);
       });
   }
+
+  async function logout() {
+    await fetch("/api/auth/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((res) => {
+        console.log(res);
+        let data: any = res.json();
+        if (res.status === 200) {
+          window.location.href = "/";
+        } else {
+          alert(
+            "An error has occured. Please try again. Status: " + res.status
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  let firstname: string = "";
+  let lastname: string = "";
+  let password: string = "";
+  let confirmPassword: string = "";
+
+  function saveName() {
+    fetch("/api/changeName", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        username: user.username,
+        firstname: firstname,
+        lastname: lastname,
+      }),
+    }).then((res) => {
+      console.log(res);
+      let data: any = res.json();
+      if (res.status === 200) {
+      } else {
+        alert("An error has occured. Please try again. Status: " + res.status);
+      }
+    });
+  }
+
+  function savePassword() {
+    fetch("/api/changePassword", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        username: user.username,
+        password: password,
+        confirmPassword: confirmPassword,
+      }),
+    })
+      .then((res) => {
+        console.log(res);
+        let data: any = res.json();
+        if (res.status === 200) {
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  function saveChanges() {
+    if (firstname && lastname && password && confirmPassword) {
+      if (password !== confirmPassword) {
+        return alert("passwords do not match");
+      }
+
+      saveName();
+      savePassword();
+    } else if (firstname && lastname) {
+      saveName();
+    } else if (password && confirmPassword) {
+      if (password !== confirmPassword) {
+        return alert("passwords do not match");
+      }
+      savePassword();
+    }
+  }
 </script>
 
 <div class="flex justify-between bg-slate-100 h-16">
@@ -83,11 +175,18 @@
       <h1 class="font-inter font-normal">Itslearning 2</h1>
     {/if}
   </div>
-  <div class="flex flex-col justify-center mr-6">
-    <button class="flex" on:click={toggleModal}>
-      <h3 class="font-inter font-light mr-6">Welcome, {user.firstname}</h3>
-      <Avatar {initials} />
-    </button>
+  <div class="flex mr-6">
+    <div class="flex flex-col justify-center mr-6">
+      <button class="flex" on:click={toggleModal}>
+        <h3 class="font-inter font-light mr-6">Welcome, {user.firstname}</h3>
+        <Avatar {initials} />
+      </button>
+    </div>
+    <div class="flex flex-col justify-center">
+      <div>
+        <Button type="primary" class="my-4" on:click={logout}>Log out</Button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -101,27 +200,30 @@
         <Modal.Content.Body slot="body">
           <div>
             <h3>Change name</h3>
-            <Input name="input" placeholder="Firstname" />
-            <Input name="input" placeholder="Lastname" />
+            <Input
+              name="input"
+              placeholder="Firstname"
+              bind:value={firstname}
+            />
+            <Input name="input" placeholder="Lastname" bind:value={lastname} />
             <h3>Change password</h3>
             <Input
               type="password"
               name="input"
               placeholder="Password"
               showPasswordToggle
+              bind:value={password}
             />
             <Input
               type="password"
               name="input"
               placeholder="Confirm password"
               showPasswordToggle
+              bind:value={confirmPassword}
             />
 
-            <Button
-              type="primary"
-              {loading}
-              on:click={toggleLoading}
-              class="mt-8">Save</Button
+            <Button type="primary" {loading} on:click={saveChanges} class="mt-8"
+              >Save</Button
             >
           </div>
           <hr class="my-4 border-gray-300" />
