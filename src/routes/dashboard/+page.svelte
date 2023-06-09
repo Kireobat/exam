@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { DatePicker } from "stwui";
   import { onMount, onDestroy } from "svelte";
   import Menu from "$lib/components/Menu.svelte";
   import ClassesAccordion from "$lib/components/ClassesAccordion.svelte";
@@ -26,6 +27,9 @@
 
   // variables
   let fragment = "#item1";
+
+  const calendar =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></svg>';
 
   // fragments
   // example: http://localhost:5000/#home
@@ -144,6 +148,10 @@
           <h1 class="font-inter">Projects</h1>
         {:else if fragment === "#item4"}
           <h1 class="font-inter">Calendar</h1>
+
+          <DatePicker name="date-3" allowClear>
+            <DatePicker.Leading slot="leading" data={calendar} />
+          </DatePicker>
         {:else if fragment === "#item5"}
           <h1 class="font-inter">Documents</h1>
           <ClassesAccordion />
