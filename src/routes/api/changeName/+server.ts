@@ -62,7 +62,9 @@ export async function POST( {request, cookies} ) {
         i++
     }
 
-    db.prepare('UPDATE users SET firstname = ?, lastname = ?, username = ? WHERE username = ?').run(firstname, lastname, newUsername ,username)
+    let newEmail = newUsername + "@example.com"
+
+    db.prepare('UPDATE users SET firstname = ?, lastname = ?, username = ?, email = ? WHERE username = ?').run(firstname, lastname, newUsername, newEmail ,username)
 
 
 

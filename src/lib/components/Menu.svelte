@@ -123,6 +123,7 @@
           <Menu.Item.Icon slot="icon" data={item.data} />
           {#each item.children as child}
             <Menu.Group.Item
+              class="font-inter"
               key={child.key}
               label={child.label}
               href={child.href}
@@ -134,6 +135,7 @@
         <Menu.Group key={item.key} label={item.label} href={item.href}>
           {#each item.children as child}
             <Menu.Group.Item
+              class="font-inter"
               key={child.key}
               label={child.label}
               href={child.href}
@@ -144,6 +146,7 @@
       {/if}
     {:else if item.data && item.badge}
       <Menu.Item
+        class="font-inter"
         key={item.key}
         label={item.label}
         href={item.href}
@@ -154,6 +157,7 @@
       </Menu.Item>
     {:else if item.data}
       <Menu.Item
+        class="font-inter"
         key={item.key}
         label={item.label}
         href={item.href}
@@ -163,6 +167,7 @@
       </Menu.Item>
     {:else if item.badge}
       <Menu.Item
+        class="font-inter"
         key={item.key}
         label={item.label}
         href={item.href}
@@ -172,6 +177,7 @@
       </Menu.Item>
     {:else}
       <Menu.Item
+        class="font-inter"
         key={item.key}
         label={item.label}
         href={item.href}

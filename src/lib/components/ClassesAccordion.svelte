@@ -212,6 +212,7 @@
     <Accordion.Item open={open === item.name}>
       <Accordion.Item.Title
         slot="title"
+        class="font-inter"
         on:click={() => handleClick(item.name)}
       >
         {item.name}

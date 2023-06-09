@@ -9,6 +9,7 @@
     username: string;
     phone: string;
     adress: string;
+    role_id: any;
   } = {
     firstname: "",
     lastname: "",
@@ -16,6 +17,7 @@
     username: "",
     phone: "",
     adress: "",
+    role_id: null,
   };
 
   let initials: string = "";
@@ -275,6 +277,9 @@
             <p class="font-inter">
               Current name: {user.firstname}
               {user.lastname}
+            </p>
+            <p class="font-inter">
+              Current username: {user.username}
             </p>
             <Input
               name="input"

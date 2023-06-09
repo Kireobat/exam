@@ -12,12 +12,16 @@
     email: string;
     username: string;
     role_id: any;
+    phone: string;
+    adress: string;
   } = {
     firstname: "",
     lastname: "",
     email: "",
     username: "",
     role_id: null,
+    phone: "",
+    adress: "",
   };
 
   // variables
@@ -135,15 +139,16 @@
       </div>
       <div class="col-span-9 row-span-5 mt-4 mb-16 overflow-y-scroll">
         {#if fragment === "#item1"}
-          <h1>Home</h1>
+          <h1 class="font-inter">Home</h1>
         {:else if fragment === "#item3"}
-          <h1>Projects</h1>
+          <h1 class="font-inter">Projects</h1>
         {:else if fragment === "#item4"}
-          <h1>Calendar</h1>
+          <h1 class="font-inter">Calendar</h1>
         {:else if fragment === "#item5"}
+          <h1 class="font-inter">Documents</h1>
           <ClassesAccordion />
         {:else if fragment === "#item6"}
-          <h1>Reports</h1>
+          <h1 class="font-inter">Reports</h1>
         {/if}
       </div>
     </div>
