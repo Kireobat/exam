@@ -141,7 +141,9 @@
       <div class="row-span-5 bg-slate-100 w-12">
         <Menu {user} />
       </div>
-      <div class="col-span-9 row-span-5 mt-4 mb-16 overflow-y-scroll">
+      <div
+        class="col-span-9 row-span-5 mt-4 mb-16 max-[500px]:ml-6 overflow-y-scroll"
+      >
         {#if fragment === "#item1"}
           <h1 class="font-inter">Home</h1>
         {:else if fragment === "#item3"}

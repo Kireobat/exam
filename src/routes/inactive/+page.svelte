@@ -30,13 +30,13 @@
   >
   <div class="absolute top-0 right-0 bottom-0 left-0 m-auto h-60 w-full">
     <div class="flex justify-center">
-      <div class="flex flex-col">
+      <div class="flex flex-col max-[500px]:ml-4">
         <h1 class="font-inter font-thin text-5xl">
           You have been inactive for 20 minutes
         </h1>
         <div class="flex justify-center mt-4">
-          <h2 class="font-inter font-thin text-2xl text-slate-400">
-            Remember to log out before leaving your computer
+          <h2 class="font-inter font-thin text-2xl text-slate-600">
+            Remember to log out before leaving your device
           </h2>
         </div>
         <div class="mt-12 flex justify-center">

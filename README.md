@@ -62,9 +62,13 @@ Domene: skole.intra
 DSRM: Kappa123
 NetBIOS: SKOLE
 
+Lærere har en delt mappe ved \\\SRV-005\Larer
+
 Hjemme mapper blir autogenerert når en konto blir opprettet
 
 Hjemme mappen er tilgjengelig ved Z:
+
+Brukere genereres fra en malbruker
 
 Info
 

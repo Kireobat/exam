@@ -241,22 +241,28 @@
 <div class="flex justify-between bg-slate-100 h-16">
   <div class="flex flex-col justify-center ml-6">
     {#if admin}
-      <h1 class="font-inter font-normal">Itslearning 2 | Admin Interface</h1>
+      <h1 class="font-inter font-normal max-[500px]:text-xl">
+        Admin Interface
+      </h1>
     {:else}
-      <h1 class="font-inter font-normal">Itslearning 2</h1>
+      <h1 class="font-inter font-normal max-[500px]:text-xl">Itslearning 2</h1>
     {/if}
   </div>
   <div class="flex mr-6">
     <div class="flex flex-col justify-center mr-6">
       <button class="flex" on:click={toggleModal}>
-        <h3 class="font-inter font-light mr-6">Welcome, {user.firstname}</h3>
+        <h3 class="font-inter font-light mr-6 max-[500px]:text-sm">
+          Welcome, {user.firstname}
+        </h3>
         <Avatar {initials} />
       </button>
     </div>
     <div class="flex flex-col justify-center">
       <div>
-        <Button type="primary" class="my-4 font-inter" on:click={logout}
-          >Log out</Button
+        <Button
+          type="primary"
+          class="my-4 font-inter max-[500px]:scale-75"
+          on:click={logout}>Log out</Button
         >
       </div>
     </div>
