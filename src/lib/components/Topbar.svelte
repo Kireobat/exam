@@ -199,20 +199,32 @@
         >
         <Modal.Content.Body slot="body">
           <div>
-            <h3>Change name</h3>
+            <h3 class="font-inter">Change name</h3>
+
+            <p class="font-inter">
+              Current name: {user.firstname}
+              {user.lastname}
+            </p>
             <Input
               name="input"
               placeholder="Firstname"
               bind:value={firstname}
+              class="font-inter"
             />
-            <Input name="input" placeholder="Lastname" bind:value={lastname} />
-            <h3>Change password</h3>
+            <Input
+              name="input"
+              placeholder="Lastname"
+              bind:value={lastname}
+              class="font-inter"
+            />
+            <h3 class="font-inter">Change password</h3>
             <Input
               type="password"
               name="input"
               placeholder="Password"
               showPasswordToggle
               bind:value={password}
+              class="font-inter"
             />
             <Input
               type="password"
@@ -220,45 +232,52 @@
               placeholder="Confirm password"
               showPasswordToggle
               bind:value={confirmPassword}
+              class="font-inter"
             />
 
-            <Button type="primary" {loading} on:click={saveChanges} class="mt-8"
-              >Save</Button
+            <Button
+              type="primary"
+              {loading}
+              on:click={saveChanges}
+              class="mt-8 font-inter">Save</Button
             >
           </div>
           <hr class="my-4 border-gray-300" />
           <div>
-            <h3>Delete your account</h3>
+            <h3 class="font-inter">Delete your account</h3>
 
             <Button
               type="danger"
-              class="my-4"
+              class="my-4 font-inter"
               on:click={() => (deleting = !deleting)}>Delete account</Button
             >
 
             {#if deleting}
               <Alert type="warn" class="w-full mx-1 my-4">
                 <Alert.Leading slot="leading" data={alertIcon} />
-                <Alert.Title slot="title"
+                <Alert.Title slot="title" class="font-inter"
                   >Are you sure you want to delete your account?</Alert.Title
                 >
-                <Alert.Description slot="description"
+                <Alert.Description slot="description" class="font-inter"
                   >This action can not be undone</Alert.Description
                 >
               </Alert>
 
-              <Button type="danger" class="h-10 w-28" on:click={deleteAccount}>
+              <Button
+                type="danger"
+                class="h-10 w-28 font-inter"
+                on:click={deleteAccount}
+              >
                 Confirm
                 <Button.Trailing slot="trailing" data={confirm} />
               </Button>
-              <Button type="primary" class="h-10 w-28">
+              <Button type="primary" class="h-10 w-28 font-inter">
                 Cancel
                 <Button.Trailing slot="trailing" data={cancel} />
               </Button>
             {/if}
           </div>
         </Modal.Content.Body>
-        <Modal.Content.Footer slot="footer">Footer</Modal.Content.Footer>
       </Modal.Content>
     </Modal>
   {/if}
