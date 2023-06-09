@@ -7,11 +7,15 @@
     lastname: string;
     email: string;
     username: string;
+    phone: string;
+    adress: string;
   } = {
     firstname: "",
     lastname: "",
     email: "",
     username: "",
+    phone: "",
+    adress: "",
   };
 
   let initials: string = "";
@@ -102,6 +106,8 @@
   let lastname: string = "";
   let password: string = "";
   let confirmPassword: string = "";
+  let phone: string = "";
+  let adress: string = "";
 
   function saveName() {
     fetch("/api/changeName", {
@@ -148,8 +154,67 @@
         console.log(err);
       });
   }
+
+  function savePhone() {
+    fetch("/api/changePhone", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        username: user.username,
+        phone: phone,
+      }),
+    }).then((res) => {
+      console.log(res);
+      let data: any = res.json();
+      if (res.status === 200) {
+      } else {
+        alert("An error has occured. Please try again. Status: " + res.status);
+      }
+    });
+  }
+
+  function saveAdress() {
+    fetch("/api/changeAdress", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        username: user.username,
+        adress: adress,
+      }),
+    }).then((res) => {
+      console.log(res);
+      let data: any = res.json();
+      if (res.status === 200) {
+      } else {
+        alert("An error has occured. Please try again. Status: " + res.status);
+      }
+    });
+  }
+
   function saveChanges() {
-    if (firstname && lastname && password && confirmPassword) {
+    if (
+      firstname &&
+      lastname &&
+      password &&
+      confirmPassword &&
+      phone &&
+      adress
+    ) {
+      if (password !== confirmPassword) {
+        return alert("passwords do not match");
+      }
+
+      saveName();
+      savePassword();
+      savePhone();
+      saveAdress();
+    } else if (firstname && lastname && password && confirmPassword) {
       if (password !== confirmPassword) {
         return alert("passwords do not match");
       }
@@ -163,6 +228,10 @@
         return alert("passwords do not match");
       }
       savePassword();
+    } else if (phone) {
+      savePhone();
+    } else if (adress) {
+      saveAdress();
     }
   }
 </script>
@@ -184,7 +253,9 @@
     </div>
     <div class="flex flex-col justify-center">
       <div>
-        <Button type="primary" class="my-4" on:click={logout}>Log out</Button>
+        <Button type="primary" class="my-4 font-inter" on:click={logout}
+          >Log out</Button
+        >
       </div>
     </div>
   </div>
@@ -232,6 +303,34 @@
               placeholder="Confirm password"
               showPasswordToggle
               bind:value={confirmPassword}
+              class="font-inter"
+            />
+            <h3 class="font-inter">Change phone number</h3>
+            <p class="font-inter">
+              {#if user.phone}
+                Current phone number: {user.phone}
+              {:else}
+                No phone number registered
+              {/if}
+            </p>
+            <Input
+              name="input"
+              placeholder="Phone Number"
+              bind:value={phone}
+              class="font-inter"
+            />
+            <h3 class="font-inter">Change adress</h3>
+            <p class="font-inter">
+              {#if user.adress}
+                Current adress: {user.adress}
+              {:else}
+                No adress registered
+              {/if}
+            </p>
+            <Input
+              name="input"
+              placeholder="Adress"
+              bind:value={adress}
               class="font-inter"
             />
 
